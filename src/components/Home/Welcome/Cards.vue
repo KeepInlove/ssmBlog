@@ -1,30 +1,68 @@
 <template>
-    <div class="welcome">
-        <router-view ></router-view>
-        <div class="card-panel">
-            <el-calendar >
-                <template
-                        slot="dateCell"
-                        slot-scope="{date, data}">
-                    <p :class="data.isSelected ? 'is-selected' : ''">
-                        {{ data.day.split('-').slice(1).join('-') }} {{ data.isSelected ? '✔️' : ''}}
-                    </p>
-                </template>
-            </el-calendar>
-        </div>
-    </div>
+    <el-row :gutter="40" class="panel-group">
+        <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
+            <div class="card-panel">
+                <div class="card-panel-icon-wrapper icon-people">
+                    <svg-icon icon-class="peoples" class-name="card-panel-icon" />
+                </div>
+                <div class="card-panel-description">
+                    <div class="card-panel-text">
+                        访客记录
+                    </div>
+                    <count-to :start-val="0" :end-val="102400" :duration="2600" class="card-panel-num" />
+                </div>
+            </div>
+        </el-col>
+        <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
+            <div class="card-panel">
+                <div class="card-panel-icon-wrapper icon-message">
+                    <svg-icon icon-class="message" class-name="card-panel-icon" />
+                </div>
+                <div class="card-panel-description">
+                    <div class="card-panel-text">
+                        留言数量
+                    </div>
+                    <count-to :start-val="0" :end-val="81212" :duration="3000" class="card-panel-num" />
+                </div>
+            </div>
+        </el-col>
+        <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
+            <div class="card-panel">
+                <div class="card-panel-icon-wrapper icon-money">
+                    <svg-icon icon-class="education" class-name="card-panel-icon" />
+                </div>
+                <div class="card-panel-description">
+                    <div class="card-panel-text">
+                        博客数量
+                    </div>
+                    <count-to :start-val="0" :end-val="80" :duration="3200" class="card-panel-num" />
+                </div>
+            </div>
+        </el-col>
+
+        <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
+            <div class="card-panel">
+                <div class="card-panel-icon-wrapper icon-money">
+                    <svg-icon icon-class="skill" class-name="card-panel-icon" />
+                </div>
+                <div class="card-panel-description">
+                    <div class="card-panel-text">
+                        任务清单
+                    </div>
+                    <count-to :start-val="0" :end-val="9280" :duration="3200" class="card-panel-num" />
+                </div>
+            </div>
+        </el-col>
+    </el-row>
 </template>
 
 <script>
     export default {
-        name: "Welcome"
+        name: "Cards"
     }
 </script>
 
 <style scoped lang="less">
-    .is-selected {
-        color: #1989FA;
-    }
     .welcome {
         width: 100%;
     }

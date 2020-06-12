@@ -7,7 +7,7 @@
                   <el-menu-item index="welcome">
                      <template slot="title">
 <!--                        <svg-icon style="margin-left: 5px"  icon-class="dashboard"></svg-icon>-->
-                        <i class="el-icon-menu"/>
+                         <i class="el-icon-s-data" />
                         <span style="margin-left: 15px">首页</span>
                      </template>
                   </el-menu-item>
@@ -38,16 +38,34 @@
                         </template>
                      </el-menu-item>
                   </el-submenu>
-                  <el-menu-item index="logs">
+                   <el-submenu index="3">
+                       <!--一级菜的模板区域-->
+                       <template slot="title">
+                           <!--图标-->
+                           <i class="el-icon-s-promotion" />
+                           <!--文本-->
+                           <span>信息管理</span>
+                       </template>
+                       <el-menu-item index="user">
+                           <template slot="title">
+                               <i class="el-icon-s-custom" />
+                               <span >个人信息</span>
+                           </template>
+                       </el-menu-item>
+                       <el-menu-item index="time">
+                           <template slot="title">
+                               <!--图标-->
+                               <i class="el-icon-time" />
+                               <!--文本-->
+                               <span>定时任务</span>
+                           </template>
+                       </el-menu-item>
+                   </el-submenu>
+
+                   <el-menu-item index="logs">
                      <template slot="title">
-                        <svg-icon style="margin-left: 5px" icon-class="form" />
-                        <span style="margin-left: 15px">日志信息</span>
-                     </template>
-                  </el-menu-item>
-                  <el-menu-item index="user">
-                     <template slot="title">
-                        <i class="el-icon-s-custom" />
-                        <span >个人信息</span>
+                         <i class="el-icon-coin" />
+                        <span >日志信息</span>
                      </template>
                   </el-menu-item>
                   <el-menu-item index="messages">
@@ -58,8 +76,8 @@
                   </el-menu-item>
                   <el-menu-item index="itemText">
                      <template slot="title">
-                        <svg-icon style="margin-left: 5px" icon-class="documentation" />
-                        <span style="margin-left: 15px">项目文档</span>
+                         <i class="el-icon-folder-opened" />
+                        <span >项目文档</span>
                      </template>
                   </el-menu-item>
                </el-menu>

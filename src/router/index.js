@@ -9,6 +9,8 @@ import Logs from "../components/Home/Logs";
 import User from "../components/Home/User";
 import Messages from "../components/Home/Messages";
 import ItemText from "../components/Home/ItemText";
+import Time from "../components/Home/Time";
+import Cards from "../components/Home/Welcome/Cards";
 Vue.use(VueRouter)
 const router = new VueRouter({
   routes:[
@@ -21,14 +23,19 @@ const router = new VueRouter({
       redirect:'/welcome',
       children:
       [
-      {path:'/welcome', component:Welcome},
+      {path:'/welcome', component:Welcome,
+        redirect:'/cards',
+      children:[
+        {path:'/cards', component:Cards},
+      ]
+      },
       {path:'/blogList', component:BlogList},
         {path:'/addBlog', component:AddBlog},
         {path:'/logs', component:Logs},
         {path:'/user', component:User},
         {path:'/messages', component:Messages},
         {path:'/itemText', component:ItemText},
-
+        {path:'/time', component:Time},
       ]},
   ]
 })
