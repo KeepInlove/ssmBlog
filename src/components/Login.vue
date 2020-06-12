@@ -9,12 +9,12 @@
          <el-form ref="loginRef"  class="login_form" :model="loginForm" :rules="loginFormRules" label-width="0px">
              <!--用户名-->
              <el-form-item prop="username">
-                 <el-input v-model="loginForm.username" type="text" prefix-icon="iconfont icon-user"></el-input>
+                 <el-input v-model="loginForm.username" type="text" prefix-icon="el-icon-user"></el-input>
              </el-form-item>
 
              <!--密码-->
              <el-form-item prop="password">
-                 <el-input v-model="loginForm.password" type="password" prefix-icon="iconfont icon-lock_fill" ></el-input>
+                 <el-input v-model="loginForm.password" type="password" prefix-icon="el-icon-lock"></el-input>
              </el-form-item>
              <!--验证码-->
              <el-form-item prop="seccode" class="row">
@@ -99,7 +99,7 @@
                 if (res.code !== 200) return this.$message.error("用户名或密码错误");
                 this.$message.success("登录成功");
                window.sessionStorage.setItem('token',res.objectMap._data.token);
-               console.log(window.sessionStorage.getItem('token'));
+                console.log(window.sessionStorage.getItem('token'));
                 this.$router.push('/home');
             })
         }
