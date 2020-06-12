@@ -9,7 +9,6 @@
                     <div class="card-panel-text">
                         访客记录
                     </div>
-                    <count-to :start-val="0" :end-val="102400" :duration="2600" class="card-panel-num" />
                 </div>
             </div>
         </el-col>
@@ -22,7 +21,6 @@
                     <div class="card-panel-text">
                         留言数量
                     </div>
-                    <count-to :start-val="0" :end-val="81212" :duration="3000" class="card-panel-num" />
                 </div>
             </div>
         </el-col>
@@ -35,7 +33,6 @@
                     <div class="card-panel-text">
                         博客数量
                     </div>
-                    <count-to :start-val="0" :end-val="80" :duration="3200" class="card-panel-num" />
                 </div>
             </div>
         </el-col>
@@ -49,7 +46,6 @@
                     <div class="card-panel-text">
                         任务清单
                     </div>
-                    <count-to :start-val="0" :end-val="9280" :duration="3200" class="card-panel-num" />
                 </div>
             </div>
         </el-col>

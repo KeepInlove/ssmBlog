@@ -3,7 +3,9 @@
       <!--左侧边栏-->
          <el-aside width="240px">
             <div class="toggle-button">|||</div>
-               <el-menu background-color="#2D4156" text-color="#fff" active-text-color="#409BFF" :router="true">
+               <el-menu background-color="#2D4156" text-color="#fff"
+                        default-active="welcome"
+                        active-text-color="#409BFF" :router="true">
                   <el-menu-item index="welcome">
                      <template slot="title">
 <!--                        <svg-icon style="margin-left: 5px"  icon-class="dashboard"></svg-icon>-->

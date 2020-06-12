@@ -1,8 +1,8 @@
 <template>
     <div class="welcome">
-        <router-view ></router-view>
-        <div class="card-panel">
-            <el-calendar >
+      <cards></cards>
+        <div>
+            <el-calendar class="time-table" >
                 <template
                         slot="dateCell"
                         slot-scope="{date, data}">
@@ -16,12 +16,23 @@
 </template>
 
 <script>
+    import Cards from "./Welcomes/Cards";
     export default {
-        name: "Welcome"
+        name: "Welcome",
+        components:{
+            Cards,
+        }
     }
 </script>
 
 <style scoped lang="less">
+    /*时间表样式*/
+    .time-table{
+        float: right;
+        font-size: 15px;
+        width: 500px;
+        height: 0;
+    }
     .is-selected {
         color: #1989FA;
     }
