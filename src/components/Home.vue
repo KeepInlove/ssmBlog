@@ -88,10 +88,8 @@
 
          <el-container>
             <!--右侧头部-->
-            <el-header>
-<!--               <el-button type="success" plain class="home_btn" style="font-size: 15px">首页</el-button>-->
-<!--               <span>首页</span>-->
-<!--               <img src="../static/Avatar.gif">-->
+            <el-header height="50px">
+               <el-button type="info" plain class="rigster" style="font-size: 15px">退出</el-button>
             </el-header>
 <!--            <el-></el->-->
             <!--右侧主体-->
@@ -100,7 +98,6 @@
             </el-main>
          </el-container>
       </el-container>
-<!--   <el-button type="info" @click="logout">退出</el-button>-->
 </template>
 
 <script>
@@ -135,14 +132,11 @@
    }
 .el-header{
       background-color: #B3C0D1;
-      color: #333;
-      text-align: center;
-      line-height: 90px;
-      display: flex;
-      justify-content: space-between;
-      padding: 0 0;
+    .rigster{
+        float: right;
+        margin-top: 5px;
+    }
 }
-
 .el-aside {
       background-color: #2D4156;
    .el-menu{

@@ -1,34 +1,45 @@
 <template>
     <div class="welcome">
       <cards></cards>
-        <div>
-            <el-calendar class="time-table" >
-                <template
-                        slot="dateCell"
-                        slot-scope="{date, data}">
-                    <p :class="data.isSelected ? 'is-selected' : ''">
-                        {{ data.day.split('-').slice(1).join('-') }} {{ data.isSelected ? '✔️' : ''}}
-                    </p>
-                </template>
-            </el-calendar>
+
+        <div class="echarts_time">
+            <!--统计图-->
+            <blog-echarts ></blog-echarts>
+                <!--日期-->
+             <el-calendar class="time-table" >
+                 <template slot="dateCell" slot-scope="{date, data}">
+                  <p :class="data.isSelected ? 'is-selected' : ''">
+                    {{ data.day.split('-').slice(1).join('-') }} {{ data.isSelected ? '✔️' : ''}}
+                 </p>
+             </template>
+         </el-calendar>
         </div>
     </div>
 </template>
 
 <script>
     import Cards from "./Welcomes/Cards";
+    import BlogEcharts from "./Welcomes/BlogEcharts";
     export default {
         name: "Welcome",
         components:{
             Cards,
+            BlogEcharts
         }
     }
 </script>
 
 <style scoped lang="less">
+    .echarts_time{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    /*.b_echarts{*/
+    /*    float: left;*/
+    /*}*/
     /*时间表样式*/
     .time-table{
-        float: right;
         font-size: 15px;
         width: 500px;
         height: 0;

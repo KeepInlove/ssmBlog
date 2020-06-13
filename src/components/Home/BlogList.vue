@@ -53,22 +53,7 @@
                 title:'',
                 data:'',
                 lab:'',
-                bolgList:[
-                    {
-                        id:'1',
-                        title:'j',
-                        data:'2',
-                        lab:'j',
-                        state: false,
-                    },
-                    {
-                        id:'2',
-                        title:'j',
-                        data:'2',
-                        lab:'j',
-                        state: true,
-                    }
-                ]
+                bolgList:[],
             }
         },
         created() {

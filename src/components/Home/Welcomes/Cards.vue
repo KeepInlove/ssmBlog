@@ -4,6 +4,7 @@
             <div class="card-panel">
                 <div class="card-panel-icon-wrapper icon-people">
                     <svg-icon icon-class="peoples" class-name="card-panel-icon" />
+<!--                    <i class=""  />-->
                 </div>
                 <div class="card-panel-description">
                     <div class="card-panel-text">
