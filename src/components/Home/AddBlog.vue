@@ -5,35 +5,27 @@
             <el-breadcrumb-item>博客管理</el-breadcrumb-item>
             <el-breadcrumb-item>添加博客</el-breadcrumb-item>
         </el-breadcrumb>
-        <div class="markdown">
-            <!--搜索区域-->
-            <el-row :gutter="20">
-                <form>
-                    <el-col :span="5">
-                        <el-input placeholder="请输入标题" />
+        <div class="markdown" >
+            <el-row :gutter="30" >
+                    <el-col :span="8">
+                        <el-input  v-model="title" placeholder="请输入标题" />
                     </el-col>
                     <el-col :span="6">
-                        <el-dropdown>
-                          <span class="el-dropdown-link">
-                            {{lab}}<i class="el-icon-arrow-down el-icon--right"></i>
-                          </span>
-                            <el-dropdown-menu slot="dropdown">
-                                <el-dropdown-item @click="selectLab">java</el-dropdown-item>
-                                <el-dropdown-item>mysql</el-dropdown-item>
-                                <el-dropdown-item>spring</el-dropdown-item>
-                                <el-dropdown-item>Vue</el-dropdown-item>
-                            </el-dropdown-menu>
-                        </el-dropdown>
+                        <el-select v-model="name" placeholder="请选择标签">
+                            <el-option v-for="item in lab"
+                                    :key="item.labId"
+                                    :label="item.name"
+                                    :value="item.name">
+                            </el-option>
+                        </el-select>
                     </el-col>
-                </form>
             </el-row>
-            <mavon-editor
-                    v-model="content"
-                    ref="md"
-                    @change="change"
-                    @save="saveMavon"
-                    style="min-height: 600px"/>
-
+                <mavon-editor
+                        v-model="markdown"
+                        ref="md"
+                        @change="change"
+                        @save="saveMavon"
+                        style="min-height: 600px;margin-top: 15px"/>
             <el-button type="success" @click="submit">提交</el-button>
         </div>
     </div>
@@ -50,16 +42,29 @@
         },
         data() {
             return {
-                lab:'请选择标签',
-                content:'', // 输入的markdown
-                html:'',    // 及时转的html
+                title: '',
+                html:'',  // 及时转的html
+                name:'',
+                markdown:'',
+                lab: [],
             }
         },
+        created() {
+            this.getLab();
+        },
         methods: {
-            selectLab(){
-                this.lab
-            }
-            ,
+            getLab(){
+                let that=this;
+                   this.$axios.get('findLabs').then(res=> {
+                       const result=res.data;
+                       console.log(result);
+                       if (result.code==200){
+                          that.lab=result.data.labList;
+                          console.log(result.data.labList)
+                       }
+                   }).catch(reason => console.log(reason));
+                   console.log()
+            },
             saveMavon(value, render){
                 console.log(value);   // md语法
                 console.log(render);  //html内容
@@ -72,9 +77,34 @@
             },
             // 提交
             submit(){
-                console.log(this.content);
+                console.log('提交操作')
+                if (this.title !==undefined && this.title.length >0 &&this.name !==undefined &&
+                    this.name.length >0&&this.markdown!=undefined&&this.markdown.length>0){
+                    console.log('都不为空,可以发送请求');
+                    const that=this
+                    this.$axios({
+                        url:'addBlog/'+this.name,
+                        method:'post',
+                        data:{
+                            'title':that.title,
+                            'markdown': that.markdown,
+                            'html':that.html
+                        }
+                    }).then((res)=>{
+                       const data=res.data;
+                       if (data.code==200){
+                           this.$message.success("发布成功");
+                       }
+                    })
+
+                }else {
+                    this.$message.warning("未填写标题或未选择标签");
+                }
+                console.log(this.title)
+                console.log(this.name)
+                console.log(this.markdown);
                 console.log(this.html);
-            }
+            },
         },
         mounted() {
 
