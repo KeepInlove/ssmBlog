@@ -6,7 +6,10 @@
             <el-breadcrumb-item>添加博客</el-breadcrumb-item>
         </el-breadcrumb>
         <div class="markdown" >
-            <el-row :gutter="30" >
+            <el-row :gutter="30">
+                <el-col :span="2">
+
+                </el-col>
                     <el-col :span="8">
                         <el-input  v-model="title" placeholder="请输入标题" />
                     </el-col>
@@ -18,6 +21,9 @@
                                     :value="item.name">
                             </el-option>
                         </el-select>
+                    </el-col>
+                    <el-col :span="4">
+                        <el-tag type="warning">请及时保存</el-tag>
                     </el-col>
             </el-row>
                 <mavon-editor
@@ -88,7 +94,7 @@
                         data:{
                             'title':that.title,
                             'markdown': that.markdown,
-                            'html':that.html
+                            'html':'<div class=blogDetail>'+this.html+'</div>'
                         }
                     }).then((res)=>{
                        const data=res.data;
@@ -96,14 +102,13 @@
                            this.$message.success("发布成功");
                        }
                     })
-
                 }else {
                     this.$message.warning("未填写标题或未选择标签");
                 }
                 console.log(this.title)
                 console.log(this.name)
                 console.log(this.markdown);
-                console.log(this.html);
+                console.log('<div class=blogDetail>'+this.html+'</div>');
             },
         },
         mounted() {

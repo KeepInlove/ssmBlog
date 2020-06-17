@@ -30,14 +30,14 @@
             <el-table-column prop="title" label="标题"></el-table-column>
             <el-table-column prop="data" label="日期"></el-table-column>
             <el-table-column prop="lab.name" label="标签"></el-table-column>
-            <el-table-column label="状态">
-                <template v-slot="scope">
-                    <el-switch v-model="scope.row.state"></el-switch>
+            <el-table-column label="状态" prop="mg_state">
+                <template slot-scope="scope">
+                    <el-switch  @change='updataState(scope.row.id)' v-model="scope.row.mg_state"></el-switch>
                 </template>
             </el-table-column>
             <el-table-column label="操作">
                 <template slot-scope="scope">
-                    <el-button type="primary" icon="el-icon-edit"  @click.native.prevent="edit (scope.row)"  circle></el-button>
+                    <el-button type="primary" icon="el-icon-edit"  @click="edit (scope.row.id)"  circle></el-button>
                     <el-button type="danger" icon="el-icon-delete" circle></el-button>
                 </template>
             </el-table-column>
@@ -47,9 +47,9 @@
                     @current-change="handleCurrentChange"
                     :current-page.sync="currentPage1"-->
             <el-pagination
-                    :page-size="10"
+                    :page-size="2"
                     layout="total, prev, pager, next"
-                    :total="100">
+                    :total="blogList.length">
             </el-pagination>
         </div>
     </el-card>
@@ -68,29 +68,40 @@
                 blog_status: ''
             }
         },
-
         created() {
-            this.blogCreate()
+            this.blogCreate();
+            // const that=this;
+        },
+        mounted() {
+
         },
         methods: {
-            getDetails (row) {
-              console.log(row.date)// 此时就能拿到整行的信息
-            },
+            // getDetails (row) {
+            //   console.log(row.date)// 此时就能拿到整行的信息
+            // },
             blogCreate() {
                 const that = this;
                 that.$axios.get('findAllBlog').then((res) => {
                     // console.log(res.data)
+                    if (res.data.code==200){
                     that.blogList = res.data.data.blogList;
-                    // console.log(this.blogList);
-                })
-            },
-            edit(){
-                this.$router.push({
-                   path: '/edit',
-                    query: {
-                        picID: row.date
+                    }else {
+                        that.blogList='暂无数据'
+                        // console.log(this.blogList);
                     }
                 })
+            },
+            updataState(e){
+               console.log(e);
+            },
+            edit(e){
+                console.log(e)
+                // this.$router.push({
+                //    path: '/edit',
+                //     query: {
+                //         picID: row.id
+                //     }
+                // })
             }
         },
         computed: {

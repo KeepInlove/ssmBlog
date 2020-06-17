@@ -1,7 +1,6 @@
 <template>
     <div class="welcome">
       <cards></cards>
-
         <div class="echarts_time">
             <!--统计图-->
             <blog-echarts ></blog-echarts>

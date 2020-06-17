@@ -12,6 +12,7 @@
     "core-js": "^3.6.5",
     "echarts": "^4.8.0",
     "element-ui": "^2.4.5",
+    "github-markdown-css": "^4.0.0",
     "less": "^3.11.3",
     "less-loader": "^6.1.0",
     "mavon-editor": "^2.9.0",
