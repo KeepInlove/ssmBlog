@@ -32,13 +32,13 @@
             <el-table-column prop="lab.name" label="标签"></el-table-column>
             <el-table-column label="状态" prop="mg_state">
                 <template slot-scope="scope">
-                    <el-switch  @change='updataState(scope.row.id)' v-model="scope.row.mg_state"></el-switch>
+              <el-switch @click.native.prevent="changeListType(scope.row.id)" disabled v-model="scope.row.mg_state"></el-switch>
                 </template>
             </el-table-column>
             <el-table-column label="操作">
                 <template slot-scope="scope">
-                    <el-button type="primary" icon="el-icon-edit"  @click="edit (scope.row.id)"  circle></el-button>
-                    <el-button type="danger" icon="el-icon-delete" circle></el-button>
+                    <el-button type="primary" icon="el-icon-edit"  @click="edit (scope.row)"  circle></el-button>
+                    <el-button type="danger" icon="el-icon-delete" @click="del(scope.row.id)" circle></el-button>
                 </template>
             </el-table-column>
         </el-table>
@@ -47,13 +47,12 @@
                     @current-change="handleCurrentChange"
                     :current-page.sync="currentPage1"-->
             <el-pagination
-                    :page-size="2"
+                    :page-size="4"
                     layout="total, prev, pager, next"
                     :total="blogList.length">
             </el-pagination>
         </div>
     </el-card>
-<!--    <router-view></router-view>-->
 </div>
 </template>
 <script>
@@ -61,11 +60,13 @@
         name: "BlogList",
         data() {
             return {
+                updateState: false,
                 title: '',
                 data: '',
                 lab: '',
                 blogList: [],
-                blog_status: ''
+                blog_status: '',
+                blog:''
             }
         },
         created() {
@@ -73,12 +74,41 @@
             // const that=this;
         },
         mounted() {
-
         },
         methods: {
-            // getDetails (row) {
-            //   console.log(row.date)// 此时就能拿到整行的信息
-            // },
+            //修改文章状态
+            changeListType (e) {
+                this.$confirm('此操作将修改状态, 是否继续?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(() => {
+                    this.$axios.get('updateStates/'+e).then((res)=>{
+                      if (res.data.code==200){
+                          this.$message({
+                              type: 'success',
+                              message: '修改成功!',
+                          })
+                          window.location.reload()
+                      }else {
+                          this.$message({
+                              type: 'error',
+                              message: '修改异常'
+                          });
+                      }
+                    })
+                    // console.log(result)确定
+                    console.log("已修改")
+                }).catch(() => {
+                    this.$message({
+                        type: 'info',
+                        message: '已取消删除'
+                    });
+                    console.log("已取消")
+                    // console.log(result)取消
+                })
+            },
+            //获取博客列表
             blogCreate() {
                 const that = this;
                 that.$axios.get('findAllBlog').then((res) => {
@@ -91,18 +121,59 @@
                     }
                 })
             },
-            updataState(e){
-               console.log(e);
-            },
+            //修改博客
             edit(e){
-                console.log(e)
-                // this.$router.push({
-                //    path: '/edit',
-                //     query: {
-                //         picID: row.id
-                //     }
-                // })
-            }
+                // console.log(e)
+                let blog=JSON.stringify(e);
+                // console.log(blog)
+                this.$router.push({
+                    // path: 'edit',
+                    name:'edit',
+                    params:{
+                        blog: blog
+                    },
+                })
+                // this.$router.push('/edit?id='+e)
+            },
+            //删除博客
+            del(e){
+                this.$msgbox({
+                    title: '消息',
+                    type:'error',
+                    message: "确定删除吗?",
+                    showCancelButton: true,
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    beforeClose: (action, instance, done) => {
+                        if (action === 'confirm') {
+                            instance.confirmButtonLoading = true;
+                            instance.confirmButtonText = '执行中...';
+                            this.$axios.delete('deleteBlog/'+e).then((res)=>{
+                                if (res.data.code==200){
+                                }else {
+                                    this.$message({
+                                        type: 'error',
+                                        message: '服务器异常'
+                                    })
+                                }
+                            })
+                            setTimeout(() => {
+                                done();
+                                setTimeout(() => {
+                                    instance.confirmButtonLoading = false;
+                                }, 300);
+                            }, 3000);
+                        } else {
+                            done();
+                        }
+                    }
+                }).then(action => {
+                    this.$message({
+                        type: 'info',
+                        message: 'action: ' + action
+                    });
+                });
+            },
         },
         computed: {
             sortBlogList: function () {
