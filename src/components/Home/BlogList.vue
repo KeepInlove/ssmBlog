@@ -24,7 +24,7 @@
             </form>
         </el-row>
         <!--列表-->
-        <el-table :data="sortBlogList" border style="width: 100%">
+        <el-table :data="blogList" border style="width: 100%">
             <el-table-column type="index" label="#"></el-table-column>
 <!--            <el-table-column prop="id" label="id" width="180"></el-table-column>-->
             <el-table-column prop="title" label="标题"></el-table-column>
@@ -43,13 +43,14 @@
             </el-table-column>
         </el-table>
         <div class="block">
-                   <!-- @size-change="handleSizeChange"
-                    @current-change="handleCurrentChange"
-                    :current-page.sync="currentPage1"-->
+
             <el-pagination
-                    :page-size="4"
+                    :current-page.sync="pageNum"
+                    @size-change="handleSizeChange"
+                    @current-change="handleCurrentChange"
+                    :page-size="list.size"
                     layout="total, prev, pager, next"
-                    :total="blogList.length">
+                    :total="list.total">
             </el-pagination>
         </div>
     </el-card>
@@ -60,22 +61,63 @@
         name: "BlogList",
         data() {
             return {
+                list:[],
                 updateState: false,
                 title: '',
                 data: '',
                 lab: '',
                 blogList: [],
                 blog_status: '',
-                blog:''
+                blog:'',
+                pageNum:1,
+                pageSize:5,    //    每页的数据
             }
         },
         created() {
-            this.blogCreate();
+            // this.blogCreate();
             // const that=this;
+            this.blogPage();
+
         },
         mounted() {
         },
         methods: {
+            //分页查询
+            blogPage() {
+               const that=this
+                    that.$axios({
+                        methods: 'get',
+                        url:'findAllBlogByPage?'+'pageNum='+that.pageNum+
+                            '&&pageSize='+that.pageSize,
+                        }).then((res)=>{
+                            // console.log(res.data.data.blogList)
+                        that.list=res.data.data.blogList;
+                        // console.log(that.list)
+                        that.blogList=that.list.list
+                        // console.log(that.blogList)
+                        console.log(that.list)
+                        })
+            },
+            handleSizeChange(size) {
+                this.pageSize= size;
+                // this.blogPage();
+                console.log(this.pageSize)  //每页下拉显示数据
+            },
+            handleCurrentChange(currentPage){
+                this.pageNum = currentPage;
+                const that=this
+                that.$axios({
+                    methods: 'get',
+                    url:'findAllBlogByPage?'+'pageNum='+that.pageNum+
+                        '&&pageSize='+that.pageSize,
+                }).then((res)=>{
+                    // console.log(res.data.data.blogList)
+                    that.blogList=res.data.data.blogList.list
+                    // console.log(that.blogList)
+                })
+                // console.log(this.list.total)
+                // console.log(this.pageNum)  //点击第几页
+            },
             //修改文章状态
             changeListType (e) {
                 this.$confirm('此操作将修改状态, 是否继续?', '提示', {
@@ -137,60 +179,49 @@
             },
             //删除博客
             del(e){
-                this.$msgbox({
-                    title: '消息',
-                    type:'error',
-                    message: "确定删除吗?",
-                    showCancelButton: true,
+                this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
                     confirmButtonText: '确定',
                     cancelButtonText: '取消',
-                    beforeClose: (action, instance, done) => {
-                        if (action === 'confirm') {
-                            instance.confirmButtonLoading = true;
-                            instance.confirmButtonText = '执行中...';
-                            this.$axios.delete('deleteBlog/'+e).then((res)=>{
-                                if (res.data.code==200){
-                                }else {
-                                    this.$message({
-                                        type: 'error',
-                                        message: '服务器异常'
-                                    })
-                                }
-                            })
-                            setTimeout(() => {
-                                done();
-                                setTimeout(() => {
-                                    instance.confirmButtonLoading = false;
-                                }, 300);
-                            }, 3000);
-                        } else {
-                            done();
+                    type: 'error'
+                }).then(() => {
+                    this.$axios.get('deleteBlog/'+e).then((res)=>{
+                        if (res.data.code==200){
+                            this.$message({
+                                type: 'success',
+                                message: '删除成功!'
+                            });
+                            window.location.reload()
+                        }else {
+                            this.$message({
+                                type: 'error',
+                                message: '删除异常'
+                            });
                         }
-                    }
-                }).then(action => {
+                    })
+                }).catch(() => {
                     this.$message({
                         type: 'info',
-                        message: 'action: ' + action
+                        message: '已取消删除'
                     });
                 });
             },
         },
         computed: {
-            sortBlogList: function () {
-                return sortByKey(this.blogList, 'id');
-            }
+            // sortBlogList: function () {
+            //     return sortByKey(this.blogList, 'id');
+            // }
         },
     }
     /*倒叙排列
     以最新日期开始
     * */
-    function sortByKey(array,key){
-        return array.sort(function(a,b){
-            var x=a[key];
-            var y=b[key];
-            return ((x>y)?-1:((x<y)?1:0));
-        });
-    }
+    // function sortByKey(array,key){
+    //     return array.sort(function(a,b){
+    //         var x=a[key];
+    //         var y=b[key];
+    //         return ((x>y)?-1:((x<y)?1:0));
+    //     });
+    // }
 </script>
 <style scoped lang="less">
     .el-table{

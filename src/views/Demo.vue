@@ -1,5 +1,5 @@
 <template>
-      <el-container>
+      <el-container class="bs">
            <el-header height="60px" >
               <div class="icon_lab">
                   <div class="header_lab" :key="i" @click="home">
@@ -92,6 +92,8 @@
 </script>
 
 <style scoped lang="less">
+    .bs{
+    }
 .el-header{
     background-color:#FFFFFF;
     position: fixed;

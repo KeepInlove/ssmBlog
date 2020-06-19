@@ -2,6 +2,7 @@
 const path = require('path')
 module.exports = {
   lintOnSave: false,
+  //3.0版本
   chainWebpack: config => {
     const svgRule = config.module.rule('svg')
     // 清除已有的所有 loader。
@@ -27,6 +28,7 @@ module.exports = {
   }
 
 }
+//2.0版本
 // const path = require('path');
 // function resolve(dir) {
 //   return path.join(__dirname, dir)
