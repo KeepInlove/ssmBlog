@@ -51,7 +51,7 @@
                        <el-menu-item index="user">
                            <template slot="title">
                                <i class="el-icon-s-custom" />
-                               <span >个人信息</span>
+                               <span >信息清单</span>
                            </template>
                        </el-menu-item>
                        <el-menu-item index="time">

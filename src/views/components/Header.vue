@@ -1,0 +1,89 @@
+<template>
+        <div class="icon_lab">
+<!--            <div class="header_lab" :key="i" v-for="(ic,i) in header_lab" @click="ic.ic">-->
+<!--                <svg-icon style="height: 20px;width: 20px;" class-name="card-panel-icon" :icon-class="ic.ic"/>{{ic.text}}-->
+<!--            </div>-->
+                              <div class="header_lab"  @click="home">
+                                 <svg-icon style="height: 20px;width: 20px"  icon-class="home"/>首页
+                              </div>
+                              <div class="header_lab"  @click="labs">
+                                  <svg-icon style="height: 20px;width: 20px"  icon-class="labs" class-name="card-panel-icon"/>标签
+                              </div>
+                              <div class="header_lab"  @click="kinds">
+                                  <svg-icon style="height: 20px;width: 20px"  icon-class="kinds" class-name="card-panel-icon"/>分类
+                              </div>
+                              <div class="header_lab" @click="messages">
+                                  <svg-icon style="height: 20px;width: 20px"  icon-class="messages" class-name="card-panel-icon"/>留言
+                              </div>
+                              <div class="header_lab"  @click="archive">
+                                  <svg-icon style="height: 20px;width: 20px"  icon-class="archive" class-name="card-panel-icon"/>归档
+                              </div>
+                              <div class="header_lab"  @click="me">
+                                  <svg-icon style="height: 20px;width: 20px"  icon-class="me" class-name="card-panel-icon"/>关于
+                              </div>
+                              <div class="header_lab"  @click="github">
+                                  <svg-icon style="height: 20px;width: 20px"  icon-class="github" class-name="card-panel-icon"/>github
+                              </div>
+        </div>
+</template>
+
+<script>
+    export default {
+        name: "Header",
+        data(){
+            return{
+                header_lab:[
+                    {'ic':'home','text':'首页'},
+                    {'ic':'labs','text':'标签'},
+                    {'ic':'kinds','text':'分类'},
+                    {'ic':'messages','text':'留言'},
+                    {'ic':'archive','text':'归档'},
+                    {'ic':'me','text':'关于'},
+                    {'ic':'github','text':'github'},
+                ]
+            }
+        },
+        methods:{
+            home(){
+                this.$router.push({path: '/demo'})
+                console.log('首页')
+            },
+            labs(){
+                this.$router.push({path: '/home'})
+            },
+            kinds(){},
+            messages(){},
+            archive(){},
+            me(){},
+            github(){
+
+            }
+        }
+    }
+</script>
+
+<style scoped lang="less">
+    .icon_lab{
+        display: flex;
+        /*flex-direction: row;*/
+        margin: auto;
+        .header_lab{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-items: center;
+            width: 90px;
+            height: 55px;
+            cursor:pointer;
+        }
+        :hover{
+            background-color: #ECF5FF;
+        }
+        .svg-icon{
+            margin-right: 8px;
+            margin-left: 10px;
+            /*margin: auto;*/
+        }
+    }
+
+</style>

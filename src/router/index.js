@@ -12,9 +12,13 @@ import ItemText from "../components/Home/ItemText";
 import Time from "../components/Home/Time";
 import Demo from "../views/Demo";
 import Edit from "../components/Home/BlogAction/Edit";
+import blogText from "../views/blogText";
 Vue.use(VueRouter)
 const router = new VueRouter({
+  mode: 'history',
   routes:[
+    {path:'/blogText/:id',name:'blogText',component:blogText,
+    },
     {path:'/demo',component:Demo},
     {path:'/edit',name:'edit',component:Edit},
        // {path:'/',redirect:'/login'},
