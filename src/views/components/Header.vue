@@ -1,14 +1,15 @@
 <template>
+    <el-header>
         <div class="icon_lab">
 <!--            <div class="header_lab" :key="i" v-for="(ic,i) in header_lab" @click="ic.ic">-->
 <!--                <svg-icon style="height: 20px;width: 20px;" class-name="card-panel-icon" :icon-class="ic.ic"/>{{ic.text}}-->
 <!--            </div>-->
                               <div class="header_lab"  @click="home">
-                                 <svg-icon style="height: 20px;width: 20px"  icon-class="home"/>首页
+                                 <svg-icon  icon-class="home"/>首页
                               </div>
-                              <div class="header_lab"  @click="labs">
-                                  <svg-icon style="height: 20px;width: 20px"  icon-class="labs" class-name="card-panel-icon"/>标签
-                              </div>
+<!--                              <div class="header_lab"  @click="labs">-->
+<!--                                  <svg-icon style="height: 20px;width: 20px"  icon-class="labs" class-name="card-panel-icon"/>标签-->
+<!--                              </div>-->
                               <div class="header_lab"  @click="kinds">
                                   <svg-icon style="height: 20px;width: 20px"  icon-class="kinds" class-name="card-panel-icon"/>分类
                               </div>
@@ -25,6 +26,7 @@
                                   <svg-icon style="height: 20px;width: 20px"  icon-class="github" class-name="card-panel-icon"/>github
                               </div>
         </div>
+    </el-header>
 </template>
 
 <script>
@@ -45,13 +47,27 @@
         },
         methods:{
             home(){
-                this.$router.push({path: '/demo'})
-                console.log('首页')
+               const url=this.$route.path;
+               console.log(url);
+                console.log(url=='/demo')
+                    if (url=='/demo'){
+                        return false;
+                    }else {
+                        this.$router.push({path: '/demo'})
+                    }
+                // console.log('首页')
             },
             labs(){
-                this.$router.push({path: '/home'})
+
             },
-            kinds(){},
+            kinds(){
+                const url=this.$route.path
+                if (url=='/kinds'){
+                    return false;
+                }else {
+                    this.$router.push({path: '/kinds'})
+                }
+            },
             messages(){},
             archive(){},
             me(){},
@@ -63,6 +79,16 @@
 </script>
 
 <style scoped lang="less">
+    .el-header{
+        background-color:#E7E7E5;
+        position: fixed;
+        width: 100%;
+        border: 1px solid #ddd;
+        left:0 ;top : 0;
+        z-index: 10000;
+        display: flex;
+        align-items: center;
+    }
     .icon_lab{
         display: flex;
         /*flex-direction: row;*/

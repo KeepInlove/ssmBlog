@@ -1,13 +1,6 @@
 <template>
       <el-container class="bs">
-           <el-header height="60px" >
                <header-text></header-text>
-<!--              <div class="icon_lab">-->
-<!--                  <div class="header_lab" :key="i" v-for="(ic,i) in header_lab" @click="ic.text">-->
-<!--                      <svg-icon style="height: 20px;width: 20px;" class-name="card-panel-icon" :icon-class="ic.ic"/>{{ic.text}}-->
-<!--                  </div>-->
-<!--               </div>-->
-           </el-header>
            <el-main>
             <el-row :gutter="10">
                         <el-col :span="10" :offset="4">
@@ -24,9 +17,7 @@
                                         </div>
                                         <div class="context_html" style="color: #707076" v-html="html.markdown">{{html.markdown}}</div>
                                     </div>
-
                                 </el-card>
-
                             </div>
                         </el-col>
                             <el-col :span="5" class="card_lab">
@@ -61,15 +52,14 @@
         data(){
             return{
                 htmlList:[],
-                header_lab:[
-                    {'ic':'home','text':'首页'},
-                    {'ic':'labs','text':'标签'},
-                    {'ic':'kinds','text':'分类'},
-                    {'ic':'messages','text':'留言'},
-                    {'ic':'archive','text':'归档'},
-                    {'ic':'me','text':'关于'},
-                    {'ic':'github','text':'github'},
-                ]
+                // header_lab:[
+                //     {'ic':'home','text':'首页'},
+                //     {'ic':'kinds','text':'分类'},
+                //     {'ic':'messages','text':'留言'},
+                //     {'ic':'archive','text':'归档'},
+                //     {'ic':'me','text':'关于'},
+                //     {'ic':'github','text':'github'},
+                // ]
             }
         },
         mounted() {
@@ -95,29 +85,16 @@
                     params:{id:e}
                 })
             },
+            home(){
+                this.$router.push({path: '/'})
+                // console.log('首页')
+            },
 
         }
     }
 </script>
 
 <style scoped lang="less">
-    .bs{
-        background: url("../static/bg.jpg") no-repeat;
-        background-size: 100% 100%;
-        height: 100%;
-        position: fixed;
-        width: 100%
-    }
-.el-header{
-    background-color:#E7E7E5;
-    position: fixed;
-    width: 100%;
-    border: 1px solid #ddd;
-    left:0 ;top : 0;
-    z-index: 10000;
-    display: flex;
-    align-items: center;
-}
 .el-card{
     /*background-color: #F6F6F6;*/
     background-color: unset
@@ -200,5 +177,11 @@
         -webkit-line-clamp: 3;
         -webkit-box-orient: vertical;
     }
-
+   .bs{
+       background: url("../static/bg.jpg") no-repeat;
+       background-size: 100% 100%;
+       height: 100%;
+       position: fixed;
+       width: 100%
+   }
 </style>

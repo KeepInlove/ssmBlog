@@ -13,12 +13,24 @@ import Time from "../components/Home/Time";
 import Demo from "../views/Demo";
 import Edit from "../components/Home/BlogAction/Edit";
 import blogText from "../views/blogText";
+
+import index from "../components/public/index";
+import We from "../components/public/We";
+import Kinds from "../views/Kinds";
 Vue.use(VueRouter)
 const router = new VueRouter({
   mode: 'history',
   routes:[
-    {path:'/blogText/:id',name:'blogText',component:blogText,
+    {path:'/blogText/:id',name:'blogText',component:blogText},
+    {path:'/',redirect:'/demo'},
+    {path:'/index',component:index,
+      redirect:'we',
+      children:[
+        {path:'/we',component:We},
+        // {path:'/labs',component:Labs},
+      ]
     },
+    {path:'/kinds',component:Kinds},
     {path:'/demo',component:Demo},
     {path:'/edit',name:'edit',component:Edit},
        // {path:'/',redirect:'/login'},
