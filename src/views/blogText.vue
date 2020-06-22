@@ -208,9 +208,7 @@
         width: 300px;
     }
     .in_content{
-
         padding-right: 20px;
-
     }
     .main_input{
         display: flex;

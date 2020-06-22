@@ -17,10 +17,14 @@ import blogText from "../views/blogText";
 import index from "../components/public/index";
 import We from "../components/public/We";
 import Kinds from "../views/Kinds";
+import Msg from "../views/Msg";
+import Archive from "../views/Archive";
 Vue.use(VueRouter)
 const router = new VueRouter({
   mode: 'history',
   routes:[
+    {path:'/arc',component:Archive},
+    {path:'/msg',component:Msg},
     {path:'/blogText/:id',name:'blogText',component:blogText},
     {path:'/',redirect:'/demo'},
     {path:'/index',component:index,

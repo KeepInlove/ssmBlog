@@ -20,7 +20,7 @@
                                 </el-card>
                             </div>
                         </el-col>
-                            <el-col :span="5" class="card_lab">
+                            <el-col :span="5"  class="card_lab"  style="position: static">
                                 <el-card>
                                     简介
                                     <hr/>
@@ -95,6 +95,7 @@
 </script>
 
 <style scoped lang="less">
+
 .el-card{
     /*background-color: #F6F6F6;*/
     background-color: unset
@@ -161,6 +162,7 @@
             margin-bottom: 20px;
         }
     }
+
 </style>
 <style>
    pre{

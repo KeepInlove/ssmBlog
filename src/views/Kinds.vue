@@ -3,13 +3,10 @@
             <Header></Header>
         <el-main>
             <el-row :gutter="10">
-                <el-col :span="2" :offset="5">
+                <el-col :span="2" :offset="4">
                     <div class="grid-content bg-purple">
-
                         <div class="kind_lab">
-
-                            <el-menu background-color="unset"
-                                     >
+                            <el-menu background-color="unset" style="position:fixed;margin-top: 30px">
                                     <el-menu-item @click="getHtml" index="1-1">
                                     <span slot="title" >全部</span>
                                     </el-menu-item>
@@ -20,7 +17,7 @@
                         </div>
                     </div>
                 </el-col>
-                <el-col :span="12">
+                <el-col :span="12" :offset="6">
                     <div v-for="(html ,i) in htmlList" :key="i">
                     <el-card class="html_context" >
                         <div @click="goText(html.id)">
@@ -36,6 +33,7 @@
                         </div>
                     </el-card>
                     </div>
+                    <div style="text-align: center">没有更多了~~</div>
                 </el-col>
             </el-row>
         </el-main>
@@ -100,7 +98,7 @@
 
 <style scoped lang="less">
     .el-main{
-        margin-top: 105px;
+        margin-top: 60px;
     }
     .el-col{
         /*border: 1px solid red;*/
@@ -113,7 +111,7 @@
         flex-direction: column;
     }
     .html_context{
-        /*margin-top: 45px;*/
+        margin-top: 45px;
         width: 100%;
         height: 220px;
         margin-bottom: 20px;

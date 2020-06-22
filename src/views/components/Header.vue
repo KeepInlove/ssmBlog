@@ -48,7 +48,7 @@
         methods:{
             home(){
                const url=this.$route.path;
-               console.log(url);
+               // console.log(url);
                 console.log(url=='/demo')
                     if (url=='/demo'){
                         return false;
@@ -68,8 +68,23 @@
                     this.$router.push({path: '/kinds'})
                 }
             },
-            messages(){},
-            archive(){},
+            messages(){
+                const url=this.$route.path
+                if (url=='/msg'){
+                    return false;
+                }else {
+                    this.$router.push({path: '/msg'})
+                }
+            },
+            archive(){
+                const url=this.$route.path
+                if (url=='/arc'){
+                    return false;
+                }else {
+                    this.$router.push({path: '/arc'})
+                }
+
+            },
             me(){},
             github(){
 
@@ -111,5 +126,4 @@
             /*margin: auto;*/
         }
     }
-
 </style>
