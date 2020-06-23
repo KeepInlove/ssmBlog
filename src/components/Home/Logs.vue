@@ -50,11 +50,11 @@
                         '&&pageSize='+that.pageSize,
                     method:'get',
                 }).then((res)=>{
-                    console.log(res.data.data.pageInfo)
+                    // console.log(res.data.data.pageInfo)
                     that.list=res.data.data.pageInfo;
-                    console.log(that.list)
+                    // console.log(that.list)
                     that.logList=that.list.list;
-                    console.log(that.logList)
+                    // console.log(that.logList)
                 })
             },
             handleSizeChange(size) {

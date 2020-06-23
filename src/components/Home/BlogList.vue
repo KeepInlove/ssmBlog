@@ -32,7 +32,7 @@
             <el-table-column prop="lab.name" label="标签"></el-table-column>
             <el-table-column label="是否前台显示" prop="mg_state">
                 <template slot-scope="scope">
-              <el-switch @click.native.prevent="changeListType(scope.row.id)"  v-model="scope.row.mg_state"></el-switch>
+              <el-switch @click.native.prevent="changeListType(scope.row.id)" disabled v-model="scope.row.mg_state"></el-switch>
                 </template>
             </el-table-column>
             <el-table-column label="操作">
@@ -43,7 +43,6 @@
             </el-table-column>
         </el-table>
         <div class="block">
-
             <el-pagination
                     :current-page.sync="pageNum"
                     @size-change="handleSizeChange"
@@ -95,13 +94,13 @@
                         // console.log(that.list)
                         that.blogList=that.list.list
                         // console.log(that.blogList)
-                        console.log(that.list)
+                        // console.log(that.list)
                         })
             },
             handleSizeChange(size) {
                 this.pageSize= size;
                 // this.blogPage();
-                console.log(this.pageSize)  //每页下拉显示数据
+                // console.log(this.pageSize)  //每页下拉显示数据
             },
             handleCurrentChange(currentPage){
                 this.pageNum = currentPage;
@@ -171,9 +170,7 @@
                 this.$router.push({
                     // path: 'edit',
                     name:'edit',
-                    params:{
-                        blog: blog
-                    },
+                    params:{id:e.id,blog: blog},
                 })
                 // this.$router.push('/edit?id='+e)
             },

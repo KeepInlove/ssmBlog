@@ -6,13 +6,16 @@
                     <el-input  v-model="blog.title" placeholder="请输入标题" />
                 </el-col>
                 <el-col :span="6">
-                    <el-select v-model="name" :placeholder="blog.lab.name" >
+                    <el-select v-model="name" :placeholder="uname" >
                         <el-option v-for="item in lab"
                                    :key="item.labId"
                                    :label="item.name"
                                    :value="item.name">
                         </el-option>
                     </el-select>
+                </el-col>
+                <el-col :span="6">
+                    <el-button type="primary" >返回</el-button>
                 </el-col>
             </el-row>
             <mavon-editor
@@ -21,7 +24,9 @@
                     @change="change"
                     @save="saveMavon"
                     style="min-height: 600px;margin-top: 15px"/>
-            <el-button type="success" @click="submit" >提交</el-button>
+            <div class="sub">
+                <el-button type="success" style="margin-top: 5px" @click="submit" >提交</el-button>
+            </div>
         </div>
     </div>
 </template>
@@ -39,21 +44,38 @@
                 html: '',
                 blog:'',
                 name:'',
-                lab:[]
+                lab:[],
+                id:this.$route.params.id,
+                uname:''
             }
         },
         created() {
             this.getLab();
+            // console.log(this.id);
             this.getBlog();
+        },
+        mounted() {
         },
         methods:{
             getBlog(){
-                this.blog=JSON.parse(this.$route.params.blog)
+               // console.log(this.$route.params.blog==null)
+              const  that=this;
+                if(that.$route.params.blog==null){
+                        that.$axios.get('selectBlogById/'+that.id).then((res)=>{
+                           that.blog=res.data.data.blog
+                            that.uname=that.blog.lab.name;
+                            // console.log(res.data.data.blog);
+                            // console.log(that.uname)
+                        })
+                }else {
+                    that.blog=JSON.parse(this.$route.params.blog);
+                    that.uname=that.blog.lab.name;
+                }
                 // console.log(this.blog)
             },
             saveMavon(value, render){
-                console.log(value);   // md语法
-                console.log(render);  //html内容
+                // console.log(value);   // md语法
+                // console.log(render);  //html内容
                 this.readmeContent=render;
             },
             change(value, render){
@@ -98,7 +120,7 @@
                 }else {
                     this.$message.warning("未填写标题或未选择标签");
                 }
-                console.log(this.blog.id)
+                // console.log(this.blog.id)
                 // console.log(this.blog.title)
                 // console.log(this.name)
                 // console.log(this.blog.markdown);
@@ -112,8 +134,11 @@
 <style scoped lang="less">
     .markdown{
         margin-top: 10px;
-    .el-button{
-        float: right;
     }
+    .sub{
+        display: flex;
+        .el-button{
+            margin: auto;
+        }
     }
 </style>

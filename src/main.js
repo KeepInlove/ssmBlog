@@ -6,6 +6,7 @@ import './assets/css/global.css'
 import axios from 'axios'
 import './icons';
 import echarts from 'echarts'
+import 'default-passive-events'
 Vue.prototype.$echarts = echarts
 Vue.config.productionTip = false
 // 配置请求的根路径

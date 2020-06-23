@@ -49,7 +49,7 @@
             home(){
                const url=this.$route.path;
                // console.log(url);
-                console.log(url=='/demo')
+               //  console.log(url=='/demo')
                     if (url=='/demo'){
                         return false;
                     }else {

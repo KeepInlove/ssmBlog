@@ -63,13 +63,13 @@
                 let that=this;
                    this.$axios.get('findLabs').then(res=> {
                        const result=res.data;
-                       console.log(result);
+                       // console.log(result);
                        if (result.code==200){
                           that.lab=result.data.labList;
-                          console.log(result.data.labList)
+                          // console.log(result.data.labList)
                        }
                    }).catch(reason => console.log(reason));
-                   console.log()
+                   // console.log()
             },
             saveMavon(value, render){
                 console.log(value);   // md语法

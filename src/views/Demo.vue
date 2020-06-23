@@ -81,7 +81,7 @@
                 // console.log(e)
                 this.$router.push({
                     name:'blogText',
-                    path:'blogText/'+e,
+                    path:'blogText/',
                     params:{id:e}
                 })
             },

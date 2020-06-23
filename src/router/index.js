@@ -37,7 +37,7 @@ const router = new VueRouter({
     },
     {path:'/kinds',component:Kinds},
     {path:'/demo',component:Demo},
-    {path:'/edit',name:'edit',component:Edit},
+    {path:'/edit/:id',name:'edit',component:Edit},
        // {path:'/',redirect:'/login'},
     // {path:'/',redirect:'/home'},
     {path:'/login',component:Login},
