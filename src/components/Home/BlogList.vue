@@ -30,9 +30,9 @@
             <el-table-column prop="title" label="标题"></el-table-column>
             <el-table-column prop="data" label="日期"></el-table-column>
             <el-table-column prop="lab.name" label="标签"></el-table-column>
-            <el-table-column label="状态" prop="mg_state">
+            <el-table-column label="是否前台显示" prop="mg_state">
                 <template slot-scope="scope">
-              <el-switch @click.native.prevent="changeListType(scope.row.id)" disabled v-model="scope.row.mg_state"></el-switch>
+              <el-switch @click.native.prevent="changeListType(scope.row.id)"  v-model="scope.row.mg_state"></el-switch>
                 </template>
             </el-table-column>
             <el-table-column label="操作">

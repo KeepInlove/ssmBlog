@@ -63,19 +63,25 @@
                            </template>
                        </el-menu-item>
                    </el-submenu>
-
+                   <el-menu-item index="messages">
+                       <template slot="title">
+                           <i class="el-icon-s-comment" />
+                           <span >评论管理</span>
+                       </template>
+                   </el-menu-item>
+                       <el-menu-item index="labs">
+                           <template slot="title">
+                               <i class="el-icon-star-on" />
+                               <span >标签管理</span>
+                           </template>
+                       </el-menu-item>
                    <el-menu-item index="logs">
                      <template slot="title">
                          <i class="el-icon-coin" />
                         <span >日志信息</span>
                      </template>
                   </el-menu-item>
-                  <el-menu-item index="messages">
-                     <template slot="title">
-                        <i class="el-icon-s-comment" />
-                        <span >评论管理</span>
-                     </template>
-                  </el-menu-item>
+
                   <el-menu-item index="itemText">
                      <template slot="title">
                          <i class="el-icon-folder-opened" />

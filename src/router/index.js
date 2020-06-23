@@ -19,6 +19,7 @@ import We from "../components/public/We";
 import Kinds from "../views/Kinds";
 import Msg from "../views/Msg";
 import Archive from "../views/Archive";
+import Labs from "../components/Home/Labs";
 Vue.use(VueRouter)
 const router = new VueRouter({
   mode: 'history',
@@ -52,6 +53,7 @@ const router = new VueRouter({
         {path:'/messages', component:Messages},
         {path:'/itemText', component:ItemText},
         {path:'/time', component:Time},
+        {path:'/labs', component:Labs},
       ]},
   ]
 })
