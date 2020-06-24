@@ -13,17 +13,18 @@ import Time from "../components/Home/Time";
 import Demo from "../views/Demo";
 import Edit from "../components/Home/BlogAction/Edit";
 import blogText from "../views/blogText";
-
 import index from "../components/public/index";
 import We from "../components/public/We";
 import Kinds from "../views/Kinds";
 import Msg from "../views/Msg";
 import Archive from "../views/Archive";
 import Labs from "../components/Home/Labs";
+import About from "../views/About";
 Vue.use(VueRouter)
 const router = new VueRouter({
   mode: 'history',
   routes:[
+    {path:'/about',component:About},
     {path:'/arc',component:Archive},
     {path:'/msg',component:Msg},
     {path:'/blogText/:id',name:'blogText',component:blogText},
