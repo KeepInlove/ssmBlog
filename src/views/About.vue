@@ -18,18 +18,6 @@
                             </div>
                             </el-col>
                         </el-row>
-
-
-                        <!--                   <h2>关于我</h2>-->
-<!--                    <div>-->
-<!--                      <img class="ava" src="../static/1.jpg" height="150px" width="150px">-->
-<!--                    </div>-->
-<!--                    <div class="user_skills">-->
-<!--                        <el-table :data="skills"  :header-cell-style="getRowClass"  >-->
-<!--                            <el-table-column  label="#" type="index"></el-table-column>-->
-<!--                            <el-table-column label="专业技能" prop="data"></el-table-column>-->
-<!--                        </el-table>-->
-<!--                    </div>-->
                     </div>
                 </el-main>
         </el-container>
@@ -69,7 +57,6 @@
         border-radius: 50%;
         margin-top: 20px;
     }
-
     .tit{
         display: flex;
         flex-direction: column;
@@ -78,9 +65,9 @@
            font-size: 16px;
            color:#707076;
        }
-
+        .skill{
+            color:#707076;
+        }
     }
-    .skill{
 
-    }
 </style>

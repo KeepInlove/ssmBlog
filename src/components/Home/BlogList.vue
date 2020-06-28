@@ -150,18 +150,18 @@
                 })
             },
             //获取博客列表
-            blogCreate() {
-                const that = this;
-                that.$axios.get('findAllBlog').then((res) => {
-                    // console.log(res.data)
-                    if (res.data.code==200){
-                    that.blogList = res.data.data.blogList;
-                    }else {
-                        that.blogList='暂无数据'
-                        // console.log(this.blogList);
-                    }
-                })
-            },
+            // blogCreate() {
+            //     const that = this;
+            //     that.$axios.get('findAllBlog').then((res) => {
+            //         // console.log(res.data)
+            //         if (res.data.code==200){
+            //         that.blogList = res.data.data.blogList;
+            //         }else {
+            //             that.blogList='暂无数据'
+            //             // console.log(this.blogList);
+            //         }
+            //     })
+            // },
             //修改博客
             edit(e){
                 // console.log(e)
@@ -181,7 +181,7 @@
                     cancelButtonText: '取消',
                     type: 'error'
                 }).then(() => {
-                    this.$axios.get('deleteBlog/'+e).then((res)=>{
+                    this.$axios.delete('deleteBlog/'+e).then((res)=>{
                         if (res.data.code==200){
                             this.$message({
                                 type: 'success',

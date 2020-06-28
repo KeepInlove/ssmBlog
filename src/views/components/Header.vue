@@ -16,9 +16,9 @@
                               <div class="header_lab" @click="messages">
                                   <svg-icon style="height: 20px;width: 20px"  icon-class="messages" class-name="card-panel-icon"/>留言
                               </div>
-                              <div class="header_lab"  @click="archive">
-                                  <svg-icon style="height: 20px;width: 20px"  icon-class="archive" class-name="card-panel-icon"/>归档
-                              </div>
+<!--                              <div class="header_lab"  @click="archive">-->
+<!--                                  <svg-icon style="height: 20px;width: 20px"  icon-class="archive" class-name="card-panel-icon"/>归档-->
+<!--                              </div>-->
                               <div class="header_lab"  @click="me">
                                   <svg-icon style="height: 20px;width: 20px"  icon-class="me" class-name="card-panel-icon"/>关于
                               </div>
@@ -28,7 +28,6 @@
         </div>
     </el-header>
 </template>
-
 <script>
     export default {
         name: "Header",
@@ -39,10 +38,11 @@
                     {'ic':'labs','text':'标签'},
                     {'ic':'kinds','text':'分类'},
                     {'ic':'messages','text':'留言'},
-                    {'ic':'archive','text':'归档'},
+                    // {'ic':'archive','text':'归档'},
                     {'ic':'me','text':'关于'},
                     {'ic':'github','text':'github'},
-                ]
+                ],
+                url:'https://github.com/Gxy2020'
             }
         },
         methods:{
@@ -50,10 +50,10 @@
                const url=this.$route.path;
                // console.log(url);
                //  console.log(url=='/demo')
-                    if (url=='/demo'){
+                    if (url=='/index'){
                         return false;
                     }else {
-                        this.$router.push({path: '/demo'})
+                        this.$router.push({path: '/index'})
                     }
                 // console.log('首页')
             },
@@ -96,7 +96,8 @@
                 }
             },
             github(){
-
+                window.open(this.url,'_blank');
+                // window.location.href=this.url;
             }
         }
     }

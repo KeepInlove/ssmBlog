@@ -33,7 +33,7 @@
             <el-table :data="labList">
                 <el-table-column label="#" type="index"></el-table-column>
                 <el-table-column prop="name" label="类别" ></el-table-column>
-                <el-table-column prop="count" label="篇数" ></el-table-column>
+                <el-table-column prop="value" label="篇数" ></el-table-column>
                 <el-table-column label="是否前台显示">
                     <template slot-scope="scope">
                         <el-switch  v-model="scope.row.stu"></el-switch>
@@ -42,7 +42,7 @@
                 <el-table-column label="操作" >
                     <template slot-scope="scope">
                         <el-button type="primary" icon="el-icon-view"  @click="blogs=true,seeList(scope.row.name)" circle></el-button>
-                        <el-button type="danger" icon="el-icon-delete"  circle></el-button>
+                        <el-button type="danger" icon="el-icon-delete" @click="deleteLab(scope.row)" circle></el-button>
                     </template>
                 </el-table-column>
             </el-table>
@@ -146,11 +146,29 @@
             },
             // 查看具体文章
             seeText(e) {
-                // console.log(e);获取id
+                console.log(e);//获取id
                 const href=this.$router.resolve({name: 'blogText', params: {id: e}});
                 // console.log(href);
                 window.open(href.href,'_blank');
             },
+            deleteLab(e){
+                // console.log(e.value);
+                if (e.value==0){
+                    this.$axios.delete('deleteLab/'+e.id).then((res)=>{
+                        this.$message({
+                            type:'success',
+                            message:'删除成功'
+                        })
+                        console.log(res)
+                    })
+                }else {
+                    this.$message({
+                        type:'error',
+                        message:'该标签存在文章,删除失败'
+                    })
+                }
+                // console.log(e.value==0)
+            }
         }
     }
 </script>

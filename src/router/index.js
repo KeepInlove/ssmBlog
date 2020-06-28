@@ -20,24 +20,32 @@ import Msg from "../views/Msg";
 import Archive from "../views/Archive";
 import Labs from "../components/Home/Labs";
 import About from "../views/About";
+import Char from "../views/Char";
 Vue.use(VueRouter)
+
+// 解决ElementUI导航栏中的vue-router在3.0版本以上重复点菜单报错问题
+const originalPush = VueRouter.prototype.push
+VueRouter.prototype.push = function push(location) {
+  return originalPush.call(this, location).catch(err => err)
+}
+
 const router = new VueRouter({
   mode: 'history',
   routes:[
+    {path:'/char',component:Char},
     {path:'/about',component:About},
     {path:'/arc',component:Archive},
     {path:'/msg',component:Msg},
     {path:'/blogText/:id',name:'blogText',component:blogText},
-    {path:'/',redirect:'/demo'},
-    {path:'/index',component:index,
-      redirect:'we',
-      children:[
-        {path:'/we',component:We},
-        // {path:'/labs',component:Labs},
-      ]
-    },
+    {path:'/',redirect:'/index'},
+    // {path:'/index',component:index,
+    //   redirect:'we',
+    //   children:[
+    //     {path:'/we',component:We},
+    //   ]
+    // },
     {path:'/kinds',component:Kinds},
-    {path:'/demo',component:Demo},
+    {path:'/index',component:Demo},
     {path:'/edit/:id',name:'edit',component:Edit},
        // {path:'/',redirect:'/login'},
     // {path:'/',redirect:'/home'},
@@ -58,10 +66,10 @@ const router = new VueRouter({
       ]},
   ]
 })
-/*router.beforeEach((to, from, next) =>{
-  if (to.path==='/login') return next();
-  const tokenStar=window.sessionStorage.getItem('token')
-  if (!tokenStar) return next('/login')
-  next();
-} )*/
+// router.beforeEach((to, from, next) =>{
+//   if (to.path==='/login') return next();
+//   const tokenStar=window.sessionStorage.getItem('token')
+//   if (!tokenStar) return next('/login')
+//   next();
+// })
 export default router

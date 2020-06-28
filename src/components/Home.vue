@@ -95,7 +95,7 @@
          <el-container>
             <!--右侧头部-->
             <el-header height="50px">
-               <el-button type="info" plain class="rigster" style="font-size: 15px">退出</el-button>
+               <el-button type="info" plain class="rigster" @click="logout" style="font-size: 15px">退出</el-button>
             </el-header>
 <!--            <el-></el->-->
             <!--右侧主体-->

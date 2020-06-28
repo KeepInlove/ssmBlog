@@ -59,7 +59,6 @@
             },
             handleSizeChange(size) {
                 this.pageSize= size;
-                // this.blogPage();
                 // console.log(this.pageSize)  //每页下拉显示数据
             },
             handleCurrentChange(currentPage){
@@ -70,12 +69,29 @@
                     url:'findAllLogPage?'+'pageNum='+that.pageNum+
                         '&&pageSize='+that.pageSize,
                 }).then((res)=>{
-                    // console.log(res.data.data.blogList)
-                    that.logList=res.data.data.msgList.list
-                    // console.log(that.blogList)
+                    // console.log(res.data.data.pageInfo)
+                    that.logList=res.data.data.pageInfo.list;
+                    // console.log(that.logList)
                 })
                 // console.log(this.list.total)
                 // console.log(this.pageNum)  //点击第几页
+            },
+            deletMsg(e){
+                console.log(e);
+                this.$axios.delete('delete/'+e).then((res)=>{
+                    // console.log(res);
+                    if (res.data.code==200){
+                        this.$message.success({
+                            type:'success',
+                            message:'删除成功',
+                        });
+                    }else {
+                        this.$message.success({
+                            type:'error',
+                            message:'删除失败'
+                        });
+                    }
+                })
             }
         }
     }

@@ -1,8 +1,6 @@
 <template>
-<!--    <v-chart id ='main' ref='main' style="width: 600px;height:400px;" />-->
     <div class="b_echarts">
         <el-card><div id="myChart" :style="{width: '350px', height: '350px'}"></div></el-card>
-<!--        <el-card><div id="myChart2" :style="{width: '350px', height: '350px'}"> </div></el-card>-->
     </div>
 </template>
 
@@ -18,7 +16,7 @@
     .b_echarts{
         display: flex;
         flex-direction: row;
-       margin-left: 20px;
+        margin-left: 20px;
     }
     .el-card{
         margin-right: 20px;
@@ -32,28 +30,63 @@
         name: 'blogEcharts',
         data () {
             return {
+                name:[],
+                // data:[]
+                // labList:[]
             }
         },
         mounted(){
             this.drawLine();
+            this.getData();
         },
         methods: {
             drawLine(){
-                let myChart = this.$echarts.init(document.getElementById('myChart'))
+                let myChart = this.$echarts.init(document.getElementById('myChart'));
                 // 绘制图表
-                myChart.setOption({
-                    title: { text: '分类博客数量' },
-                    tooltip: {},
-                    xAxis: {
-                        data: ["java","mysql","vue","spring","python"]
-                    },
-                    yAxis: {},
-                    series: [{
-                        name: '销量',
-                        type: 'bar',
-                        data: [5, 20, 36, 10, 10, 20]
-                    }]
+                // myChart.setOption({
+                //     title: { text: '分类博客数量' },
+                //     tooltip: {},
+                //     xAxis: {
+                //         data: ['']
+                //     },
+                //     yAxis: {},
+                //     series: [{
+                //         name: '数量',
+                //         type: 'bar',
+                //         data: ['']
+                //     }]
+                // });
+                this.$axios.get('findAllLab').then((res) => {
+                    // console.log(res);
+                    // console.log(res.data.data.labList.name)
+                    const labList=res.data.data.labList
+                    this.name=labList.map(obj=>{
+                        return obj.name;
+                    });
+                    // console.log(this.name);
+                    myChart.setOption({
+                        tooltip: {},
+                        title: { text: '分类博客数量' },
+                        xAxis: {
+                            data:this.name,
+                            axisLabel:{
+                                interval:0,
+                                rotate:-30,
+                            }
+                        },
+                        legend: {},
+                        yAxis: {},
+                        series: [{
+                            name: '数量',
+                            type: 'bar',
+                            data: res.data.data.labList
+                        }]
+                    })
                 });
+
+            },
+            getData(){
+
             }
         },
     }

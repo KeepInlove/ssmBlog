@@ -69,6 +69,7 @@
                         })
                 }else {
                     that.blog=JSON.parse(this.$route.params.blog);
+                    // console.log(that.blog);
                     that.uname=that.blog.lab.name;
                 }
                 // console.log(this.blog)

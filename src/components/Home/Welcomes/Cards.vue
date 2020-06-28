@@ -10,6 +10,7 @@
                     <div class="card-panel-text">
                         访客记录
                     </div>
+                    <count-to :start-val="0" :end-val="10" :duration="2600" class="card-panel-num" />
                 </div>
             </div>
         </el-col>
@@ -22,6 +23,7 @@
                     <div class="card-panel-text">
                         留言数量
                     </div>
+                    <count-to :start-val="0" :end-val="msgCount" :duration="2600" class="card-panel-num" />
                 </div>
             </div>
         </el-col>
@@ -34,6 +36,7 @@
                     <div class="card-panel-text">
                         博客数量
                     </div>
+                    <count-to :start-val="0" :end-val="blogCount" :duration="2600" class="card-panel-num" />
                 </div>
             </div>
         </el-col>
@@ -46,6 +49,7 @@
                     <div class="card-panel-text">
                         任务清单
                     </div>
+                    <count-to :start-val="0" :end-val="5" :duration="2600" class="card-panel-num" />
                 </div>
             </div>
         </el-col>
@@ -53,8 +57,35 @@
 </template>
 
 <script>
+    import CountTo from 'vue-count-to'
+
     export default {
-        name: "Cards"
+        name: "Cards",
+        components: {
+            CountTo
+        },
+        data(){
+          return{
+              msgCount:0,
+              blogCount:0
+          }
+
+        },
+        mounted() {
+            this.getData();
+        },
+        methods:{
+            getData(){
+                this.$axios.get('findAllMsg').then((res)=>{
+                    // console.log(res.data.data.msg);
+                    this.msgCount=res.data.data.msg
+                })
+                this.$axios.get('findBlogCount').then((re)=>{
+                    // console.log(re)
+                    this.blogCount=re.data.data.blogTotal
+                })
+            }
+        }
     }
 </script>
 

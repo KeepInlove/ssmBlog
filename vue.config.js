@@ -1,6 +1,9 @@
 /**这里之后，还有第一行的path是跟svg有关系的配置**/
 const path = require('path')
 module.exports = {
+  devServer: {
+    port: 8081,     // 端口号
+  },
   lintOnSave: false,
   //3.0版本
   chainWebpack: config => {

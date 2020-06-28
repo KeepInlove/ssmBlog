@@ -8,10 +8,10 @@ import './icons';
 import echarts from 'echarts'
 import 'default-passive-events'
 Vue.prototype.$echarts = echarts
+Vue.prototype.$axios=axios
 Vue.config.productionTip = false
 // 配置请求的根路径
 axios.defaults.baseURL='http://127.0.0.1:8888/ssmBlg/api/'
-Vue.prototype.$axios=axios
 new Vue({
   router,
   render: h => h(App)

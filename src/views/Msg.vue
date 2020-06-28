@@ -30,6 +30,15 @@
                         <el-button type="primary" @click="addMsg">提交</el-button>
                     </div>
                 </div>
+                <span style="font-size: 18px">共1条评论</span>
+                <div class="msg_text">
+                    <div class="msgContent">
+                        <p class="ava" type="primary"  circle>a</p>
+                        <p class="data">2020-06-22 13:58</p>
+                    </div>
+                    <div class="msg_main">你好</div>
+                    <hr/>
+                </div>
             </el-card>
         </el-main>
     </el-container>
@@ -116,8 +125,40 @@
     width: 720px;
     margin-left: 8px;
 }
-    .img_mgs{
-        /*margin: 0px 35% 45px 35% ;*/
-
+.msg_text{
+    margin-top: 10px;
+    margin-bottom: 20px;
+    /*border: 1px solid red;*/
+}
+.msgContent{
+     /*border: 1px solid red;*/
+    display: flex;
+    flex-direction: row;
+    /*align-content: space-between;*/
+    justify-content: space-between;
+    height: 75px;
+    .ava{
+        /*border: 1px solid red;*/
+        background-color: #36a3f7;width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        text-align: center;
+        font-size: 30px;
+        margin-top: 20px;
     }
+    .data{
+        /*display: flex;*/
+        /*border: 1px solid red;*/
+        /*margin: auto;*/
+        /*text-align: center;*/
+        margin-top:30px ;
+        /*justify-items: center;*/
+        /*justify-content: center;*/
+    }
+ }
+.msg_main{
+    margin-left: 60px;
+    font-size: 18px;
+    margin-bottom: 40px;
+}
 </style>

@@ -63,6 +63,7 @@
         },
         mounted () {
             this.createCode();
+
     },
         methods: {
             //验证码生成返回
@@ -98,11 +99,12 @@
                 console.log(res);
                 if (res.code !== 200) return this.$message.error("用户名或密码错误");
                 this.$message.success("登录成功");
-               window.sessionStorage.setItem('token',res.objectMap._data.token);
+                window.sessionStorage.setItem('token',res.data._data.token);
                 console.log(window.sessionStorage.getItem('token'));
                 this.$router.push('/home');
-            })
-        }
+        })
+        },
+
         },
 
     }
